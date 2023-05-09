@@ -1,0 +1,28 @@
+.navbar {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  margin-right: 10px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.nav-link:hover {
+  background-color: gray;
+}
