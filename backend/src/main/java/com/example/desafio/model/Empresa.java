@@ -53,24 +53,6 @@ public class Empresa {
         this.cep = cep;
     }
 
-    // @Override
-    // public boolean equals(Object o) {
-    // if (this == o)
-    // return true;
-    // if (o == null || getClass() != o.getClass())
-    // return false;
-    // Empresa empresa = (Empresa) o;
-    // return Objects.equals(id, empresa.id) &&
-    // Objects.equals(cnpj, empresa.cnpj) &&
-    // Objects.equals(nomeFantasia, empresa.nomeFantasia) &&
-    // Objects.equals(cep, empresa.cep);
-    // }
-
-    // @Override
-    // public int hashCode() {
-    // return Objects.hash(id, cnpj, nomeFantasia, cep);
-    // }
-
     public Long getId() {
         return id;
     }

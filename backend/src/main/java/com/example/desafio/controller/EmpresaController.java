@@ -59,6 +59,30 @@ public class EmpresaController {
 
     // return new ResponseEntity<>(_empresa, HttpStatus.CREATED);
     // }
+
+    // criar mas nao associa
+
+    // @PostMapping("/empresas")
+    // public ResponseEntity<Empresa> createEmpresa(@RequestBody Empresa empresa) {
+    // Empresa _empresa = new Empresa(null, empresa.getCnpj(),
+    // empresa.getNomeFantasia(), empresa.getCep());
+
+    // // Save Empresa entity
+    // _empresa = empresaRepository.save(_empresa);
+
+    // // Add the Empresa to Fornecedores
+    // Set<Fornecedor> fornecedores = empresa.getFornecedores();
+    // if (fornecedores != null) {
+    // for (Fornecedor fornecedor : fornecedores) {
+    // fornecedor.getEmpresas().add(_empresa); // Add Empresa to Fornecedor's
+    // Set<Empresa>
+    // fornecedorRepository.save(fornecedor);
+    // }
+    // }
+
+    // return new ResponseEntity<>(_empresa, HttpStatus.CREATED);
+    // }
+
     @PostMapping("/empresas")
     public ResponseEntity<Empresa> createEmpresa(@RequestBody Empresa empresa) {
         Empresa _empresa = new Empresa(null, empresa.getCnpj(), empresa.getNomeFantasia(), empresa.getCep());
@@ -74,6 +98,10 @@ public class EmpresaController {
                 fornecedorRepository.save(fornecedor);
             }
         }
+
+        // Atualizar a empresa com os fornecedores associados
+        _empresa.setFornecedores(fornecedores);
+        _empresa = empresaRepository.save(_empresa);
 
         return new ResponseEntity<>(_empresa, HttpStatus.CREATED);
     }

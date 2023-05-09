@@ -1,54 +1,6 @@
-# DesafioFullStack
+# Backend Application - Fornecedores e Empresas
 
-Esse foi um desafio desenvolvido para gerenciamento de fornecedores e empresas.
-
-<details>
-<summary>Frontend</summary>
-
-Este é o frontend do projeto do DesafioFullStack
-
-## Tecnologias
-
-- React
-- React Router DOM
-- React Bootstrap
-- Axios
-- Vite
-
-## Funcionalidades
-
-- Listagem de fornecedores: Visualize todos os fornecedores cadastrados no sistema.
-- Filtragem de fornecedores: Realize pesquisas por nome e documento para encontrar fornecedores específicos.
-- Criação de fornecedores: Adicione novos fornecedores ao sistema.
-
-- Listagem de empresas: Veja todas as empresas registradas no sistema.
-- Filtragem de empresas: Faça buscas por nome e CNPJ para encontrar empresas específicas.
-- Criação de empresas: Cadastre novas empresas no sistema.
-
-## Instalação
-
-Certifique-se de ter o Node.js instalado na sua máquina. Em seguida, execute o seguinte comando para instalar as dependências:
-
-```shell
-npm install
-```
-
-## Executando o projeto
-
-Para iniciar o servidor de desenvolvimento e executar o projeto, use o seguinte comando:
-
-```shell
-npm run dev
-```
-
-Pronto o aplicativo está pronto para ser utilizado!
-
-</details>
-
-<details>
-<summary>Backend</summary>
-
-Este é o backend da aplicação, ele permite a criação, listagem, atualização e exclusão de fornecedores e empresas, além de associar fornecedores a empresas e vice-versa.
+Este é o backend de uma aplicação para gerenciar fornecedores e empresas. A aplicação permite a criação, listagem, atualização e exclusão de fornecedores e empresas, além de associar fornecedores a empresas e vice-versa.
 
 ## Rotas
 
@@ -148,7 +100,7 @@ Esta rota permite criar uma nova empresa.
 }
 ```
 
-Se o fornecedor já existisse bastava adicionar o id e os dados do mesmo na requisição.
+se o fornecedor já existisse bastava adicionar o id e os dados do mesmo na requisição.
 
 #### Atualizar Empresa
 
@@ -226,7 +178,7 @@ Esta rota permite associar empresas a um fornecedor existente.
 
 ### Backend - Guia de Instalação e Execução
 
-O backend foi desenvolvido utilizando as seguintes tecnologias:
+O backend deste projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 - Java
 - Spring Boot
@@ -274,5 +226,3 @@ Abra o projeto em uma IDE de sua escolha e navegue até a classe `DesafioApplica
 Após a inicialização bem-sucedida, o backend estará em execução no endereço `http://localhost:8080`.
 
 Parabéns! Agora você tem o backend configurado e em execução em sua máquina. Você pode testar as diferentes rotas e funcionalidades usando ferramentas como o Postman ou qualquer cliente HTTP, ou o frontend desenvolvido nesse projeto.
-
-</details>

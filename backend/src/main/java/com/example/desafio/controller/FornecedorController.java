@@ -57,7 +57,8 @@ public class FornecedorController {
         return new ResponseEntity<>(fornecedor, HttpStatus.OK);
     }
 
-    @GetMapping("/fornecedores/{empresaId}/empresas")
+    //
+    @GetMapping("/fornecedores/{fornecedorId}/empresas")
     public ResponseEntity<List<Empresa>> getAllEmpresasByFornecedorId(
             @PathVariable(value = "fornecedorId") Long fornecedorId) {
         if (!fornecedorRepository.existsById(fornecedorId)) {
@@ -115,7 +116,7 @@ public class FornecedorController {
     // fornecedor) {
     // Fornecedor _fornecedor = new Fornecedor(id:null, fornecedor.getDocumento(),
     // fornecedor.getNome(), fornecedor.getEmail(), fornecedor;getEmpresa()
-    //  fornecedor.getDataNas
+    // fornecedor.getDataNas
 
     // // Save Empresa entity
     // _fornecedor = fornecedorRepository.save(_fornecedor);
