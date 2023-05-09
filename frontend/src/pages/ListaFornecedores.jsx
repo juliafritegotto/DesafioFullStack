@@ -12,7 +12,7 @@ function ListaFornecedores() {
 
     useEffect(() => {
         axios.get(
-            'http://localhost:8080/fornecedor',
+            'http://localhost:8080/api/fornecedores',
         ).then(response => {
             setFornecedores(response.data);
             console.log(response.data);

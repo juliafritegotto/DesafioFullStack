@@ -2,13 +2,13 @@ package com.example.desafio.model;
 
 import java.util.Set;
 import java.util.HashSet;
-import java.util.Objects;
 
-import com.example.desafio.model.Fornecedor;
+// import com.example.desafio.model.Fornecedor;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,27 +18,32 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "empresa_entidade")
+@Table(name = "empresas")
 public class Empresa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String cnpj;
+
     @Column(nullable = false)
     private String nomeFantasia;
+
     @Column(nullable = false)
     private String cep;
 
-    @ManyToMany
-    // cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinTable(name = "empresas_fornecedores", joinColumns = @JoinColumn(name = "empresa_fk"), inverseJoinColumns = @JoinColumn(name = "fornecedor_fk"))
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "empresa_fornecedores", joinColumns = { @JoinColumn(name = "empresa_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "fornecedor_id") })
 
     private Set<Fornecedor> fornecedores = new HashSet<>();
 
     public Empresa() {
-        // no-argument constructor
     }
 
     public Empresa(Long id, String cnpj, String nomeFantasia, String cep) {
@@ -48,23 +53,23 @@ public class Empresa {
         this.cep = cep;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Empresa empresa = (Empresa) o;
-        return Objects.equals(id, empresa.id) &&
-                Objects.equals(cnpj, empresa.cnpj) &&
-                Objects.equals(nomeFantasia, empresa.nomeFantasia) &&
-                Objects.equals(cep, empresa.cep);
-    }
+    // @Override
+    // public boolean equals(Object o) {
+    // if (this == o)
+    // return true;
+    // if (o == null || getClass() != o.getClass())
+    // return false;
+    // Empresa empresa = (Empresa) o;
+    // return Objects.equals(id, empresa.id) &&
+    // Objects.equals(cnpj, empresa.cnpj) &&
+    // Objects.equals(nomeFantasia, empresa.nomeFantasia) &&
+    // Objects.equals(cep, empresa.cep);
+    // }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, cnpj, nomeFantasia, cep);
-    }
+    // @Override
+    // public int hashCode() {
+    // return Objects.hash(id, cnpj, nomeFantasia, cep);
+    // }
 
     public Long getId() {
         return id;
@@ -104,6 +109,20 @@ public class Empresa {
 
     public void setFornecedores(Set<Fornecedor> fornecedores) {
         this.fornecedores = fornecedores;
+    }
+
+    public void addFornecedor(Fornecedor fornecedor) {
+        this.fornecedores.add(fornecedor);
+        fornecedor.getEmpresas().add(this);
+    }
+
+    public void removeFornecedor(long fornecedor_id) {
+        Fornecedor fornecedor = this.fornecedores.stream().filter(t -> t.getId() == fornecedor_id).findFirst()
+                .orElse(null);
+        if (fornecedor != null) {
+            this.fornecedores.remove(fornecedor);
+            fornecedor.getEmpresas().remove(this);
+        }
     }
 
 }

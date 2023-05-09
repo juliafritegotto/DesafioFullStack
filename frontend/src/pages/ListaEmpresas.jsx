@@ -10,7 +10,7 @@ function ListaEmpresas() {
 
     useEffect(() => {
         axios.get(
-            'http://localhost:8080/empresa',
+            'http://localhost:8080/api/empresas',
         ).then(response => {
             setEmpresas(response.data);
             console.log(response.data);

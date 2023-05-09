@@ -2,12 +2,17 @@ package com.example.desafio.model;
 
 import java.time.LocalDate;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.HashSet;
 import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
+// import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,7 +20,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "fornecedor_entidade")
+@Table(name = "fornecedores")
 public class Fornecedor {
 
     @Id
@@ -38,9 +43,11 @@ public class Fornecedor {
 
     private LocalDate dataNascimento;
 
-    @ManyToMany(
-            // cascade = { CascadeType.PERSIST, CascadeType.MERGE },
-            mappedBy = "fornecedores")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    }, mappedBy = "fornecedores")
+    @JsonIgnore
     private Set<Empresa> empresas = new HashSet<>();
 
     public Fornecedor() {

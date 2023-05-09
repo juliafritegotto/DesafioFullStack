@@ -42,7 +42,7 @@ function CadastroEmpresa() {
         // const response = axios.post(url, data, { headers: { "Content-Type": "application/json" } })
 
         try {
-            const response = await axios.post('http://localhost:8080/empresa', {
+            const response = await axios.post('http://localhost:8080/api/empresas', {
                 nomeFantasia,
                 cnpj,
                 cep

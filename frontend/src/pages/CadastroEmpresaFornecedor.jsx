@@ -5,6 +5,7 @@ import './Form.css'
 function CadastroEmpresaFornecedor() {
     const [tipoDocumento, setTipoDocumento] = useState('CPF');
     const [dataNascimento, setDataNascimento] = useState('');
+    const [numeroDocumento, setNumeroDocumento] = useState('');
     const [rg, setRg] = useState('');
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -12,6 +13,10 @@ function CadastroEmpresaFornecedor() {
 
     const handleTipoDocumentoChange = (event) => {
         setTipoDocumento(event.target.value);
+    };
+
+    const handleNumeroDocumentoChange = (event) => {
+        setNumeroDocumento(event.target.value);
     };
 
     const handleDataNascimentoChange = (event) => {
@@ -39,6 +44,7 @@ function CadastroEmpresaFornecedor() {
 
         const data = {
             tipoDocumento,
+            numeroDocumento,
             dataNascimento,
             rg,
             nome,
@@ -46,11 +52,12 @@ function CadastroEmpresaFornecedor() {
             empresa,
         };
 
-        axios.post('http://localhost:8080/fornecedor', data)
+        axios.post('http://localhost:8080/api/fornecedores', data)
             .then(response => {
                 console.log(response.data);
                 // Limpar os campos após o cadastro
                 setTipoDocumento('CPF');
+                setNumeroDocumento('');
                 setDataNascimento('');
                 setRg('');
                 setNome('');
