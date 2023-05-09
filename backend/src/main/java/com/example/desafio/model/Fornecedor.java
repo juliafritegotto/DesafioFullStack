@@ -51,11 +51,10 @@ public class Fornecedor {
     private Set<Empresa> empresas = new HashSet<>();
 
     public Fornecedor() {
-        // no-argument constructor
+
     }
 
-    public Fornecedor(Long id, String documento, String nome, String email, String rg, Empresa empresa,
-            LocalDate dataNascimento,
+    public Fornecedor(Long id, String documento, String nome, String email, String rg, LocalDate dataNascimento,
             String cep) {
         this.id = id;
         this.documento = documento;

@@ -29,7 +29,7 @@ import CadastroFornecedor from './pages/CadastroFornecedor';
 import ListaFornecedores from './pages/ListaFornecedores';
 import ListaEmpresas from './pages/ListaEmpresas';
 import './global.css'
-import CadastroEmpresaFornecedor from './pages/CadastroEmpresaFornecedor';
+import CadastroEmpresaFornecedor from './pages/CadastroEmpresa';
 
 function App() {
   return (
@@ -40,11 +40,10 @@ function App() {
 
         <Routes>
 
-          <Route path="/empresa" element={<ListaEmpresas />}> </Route>
-          <Route path="/fornecedor" element={<ListaFornecedores />}></Route>
+          <Route path="/empresas" element={<ListaEmpresas />}> </Route>
+          <Route path="/fornecedores" element={<ListaFornecedores />}></Route>
           <Route path="/cadastro-empresa" element={<CadastroEmpresa />}></Route>
           <Route path="/cadastro-fornecedor" element={<CadastroFornecedor />}></Route>
-          <Route path="/cadastro-fornecedorempresa" element={<CadastroEmpresaFornecedor />}></Route>
         </Routes>
       </Fragment>
     </Router>

@@ -29,12 +29,12 @@ function ListaFornecedores() {
         setDocumentoFiltro(event.target.value);
     }
 
-    const filteredFornecedores = Fornecedores.filter(fornecedor => {
+    const filteredFornecedores = Fornecedores.length > 0 ? Fornecedores.filter(fornecedor => {
         return (
             fornecedor.nome.toLowerCase().includes(nomeFiltro.toLowerCase()) &&
             fornecedor.documento.toLowerCase().includes(documentoFiltro.toLowerCase())
-        )
-    });
+        );
+    }) : [];
 
     return (
         <div>

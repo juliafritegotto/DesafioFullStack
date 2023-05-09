@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import './Form.css'
 
-function CadastroFornecedor() {
-    const [documento, setDocumento] = useState('');
+function CadastroEmpresa() {
+    const [tipoDocumento, setTipoDocumento] = useState('CPF');
+    const [dataNascimento, setDataNascimento] = useState('');
+    const [documento, setNumeroDocumento] = useState('');
+    const [rg, setRg] = useState('');
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [cep, setCep] = useState('');
-    const [nomeEmpresa, setNomeEmpresa] = useState('');
-    // const [isValid, setIsValid] = useState(false);
+    const [empresa, setEmpresa] = useState('');
 
+    const handleTipoDocumentoChange = (event) => {
+        setTipoDocumento(event.target.value);
+    };
 
-    const handleDocumentoChange = (event) => {
-        setDocumento(event.target.value);
+    const handleNumeroDocumentoChange = (event) => {
+        setNumeroDocumento(event.target.value);
+    };
+
+    const handleDataNascimentoChange = (event) => {
+        setDataNascimento(event.target.value);
+    };
+
+    const handleRgChange = (event) => {
+        setRg(event.target.value);
     };
 
     const handleNomeChange = (event) => {
@@ -23,50 +36,13 @@ function CadastroFornecedor() {
         setEmail(event.target.value);
     };
 
+    const handleEmpresaChange = (event) => {
+        setEmpresa(event.target.value);
+    };
+
     const handleCepChange = (event) => {
         setCep(event.target.value);
     };
-
-    function isValidForm() {
-        return nome !== '' && documento !== '' && email !== '' && cep !== '';
-    }
-
-    // const handleNomeEmpresaChange = (event) => {
-    //     setNomeEmpresa(event.target.value);
-    // };
-
-    // const adicionarEmpresa = () => {
-    //     if (        setNnomeEmpresa(event.target.value).trim() !== '') {
-    //     setEmpresas(event.target.value);
-    //     ([...empresas, noem]);
-    //         setNomeFornecedor('');
-    //     }
-    // };
-
-    // function handleFieldChange(field, value) {
-    //     switch (field) {
-    //         case 'nome':
-    //             setNome(value);
-    //             break;
-    //         case 'endereco':
-    //             setEndereco(value);
-    //             break;
-    //         case 'telefone':
-    //             setTelefone(value);
-    //             break;
-    //         case 'email':
-    //             setEmail(value);
-    //             break;
-    //         default:
-    //             break;
-    //     }
-
-    //     if (nome !== '' && endereco !== '' && telefone !== '' && email !== '') {
-    //         setIsValid(true);
-    //     } else {
-    //         setIsValid(false);
-    //     }
-    // }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -76,35 +52,66 @@ function CadastroFornecedor() {
                 documento,
                 nome,
                 email,
-                cep
-                // empresas: fornecedores, // Envia a lista de empresas junto com os dados do fornecedor
+                cep,
+                dataNascimento,
+                rg
+
             });
 
             console.log('Dados enviados para o backend:', response.data);
 
-            // Limpar o formulário após o envio
-            setDocumento('');
+            setNumeroDocumento('');
             setNome('');
             setEmail('');
             setCep('');
-            // setEmpresas([]);
+            setDataNascimento('');
+            setRg('');
+
 
         } catch (error) {
             console.error('Erro ao enviar os dados:', error);
         }
     };
 
+
     return (
         <div className='containerCadastro'>
             <h1>Cadastro de Fornecedor</h1>
             <form onSubmit={handleSubmit}>
                 <div>
+                    <label htmlFor="tipoDocumento">Tipo de Documento:</label>
+                    <select id="tipoDocumento" className="selectCadastro" value={tipoDocumento} onChange={handleTipoDocumentoChange}>
+                        <option value="CPF">CPF</option>
+                        <option value="CNPJ">CNPJ</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label htmlFor="documento">{tipoDocumento === 'CPF' ? 'CPF' : 'CNPJ'}:</label>
+                    <input type="text" id="documento" className="fieldCadastro" value={documento} onChange={handleNumeroDocumentoChange} />
+                </div>
+
+                {tipoDocumento === 'CPF' && (
+                    <div>
+                        <div>
+                            <label htmlFor="rg">RG:</label>
+                            <input type="text" id="rg" className="fieldCadastro" value={rg} onChange={handleRgChange} />
+                        </div>
+
+                        <div>
+                            <label htmlFor="dataNascimento">Data de Nascimento:</label>
+                            <input type="date" id="dataNascimento" className="fieldCadastro" value={dataNascimento} onChange={handleDataNascimentoChange} />
+                        </div>
+                    </div>
+
+
+                )}
+
+
+
+                <div>
                     <label htmlFor="nome">Nome:</label>
                     <input type="text" id="nome" className="fieldCadastro" value={nome} onChange={handleNomeChange} />
-                </div>
-                <div>
-                    <label htmlFor="documento">Documento:</label>
-                    <input type="text" id="documento" className="fieldCadastro" value={documento} onChange={handleDocumentoChange} />
                 </div>
 
                 <div>
@@ -115,39 +122,16 @@ function CadastroFornecedor() {
                     <label htmlFor="cep">CEP:</label>
                     <input type="text" id="cep" className="fieldCadastro" value={cep} onChange={handleCepChange} />
                 </div>
-                {/* <div>
-                    <label htmlFor="nome">Empresas atendidas:</label>
-                    <input
-                        type="text"
-                        id="nome"
-                        className="fieldCadastro"
-                        value={nome}
-                        onChange={handleNomeChange}
-                    />
-                    <button type="button" onClick={adicionarFornecedor}>
-                        Adicionar
-                    </button> 
+                {/* 
+                <div>
+                    <label htmlFor="empresa">Empresa:</label>
+                    <input type="text" id="empresa" className="fieldCadastro" value={empresa} onChange={handleEmpresaChange} />
                 </div> */}
-                {/* <ul>
-                    {fornecedores.map((empresa, index) => (
-                        <li key={index}>{empresa}</li>
-                    ))}
-                </ul> */}
-                <button type="submit" className="btnCadastro" disabled={!isValidForm()}>
-                    Cadastrar Fornecedor
-                </button>
 
+                <button type="submit" className="btnCadastro">Cadastrar</button>
             </form>
         </div>
-
-
     );
-
 }
 
-export default CadastroFornecedor;
-
-
-
-
-
+export default CadastroEmpresa;

@@ -34,13 +34,6 @@ function CadastroEmpresa() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // let data = JSON.stringify({
-        //     username: this.state.username,
-        //     password: password
-        // });
-
-        // const response = axios.post(url, data, { headers: { "Content-Type": "application/json" } })
-
         try {
             const response = await axios.post('http://localhost:8080/api/empresas', {
                 nomeFantasia,
@@ -96,7 +89,7 @@ function CadastroEmpresa() {
 
 
                 </div>
-                <div>
+                {/* <div>
                     <label htmlFor="nomeFornecedor">Pesquisar Fornecedor:</label>
                     <input
                         type="text"
@@ -113,7 +106,7 @@ function CadastroEmpresa() {
                     {Fornecedores.map((Fornecedor, index) => (
                         <li key={index}>{Fornecedor}</li>
                     ))}
-                </ul>
+                </ul> */}
                 <button type="submit" className="btnCadastro">Cadastrar Empresa</button>
             </form>
         </div>

@@ -27,12 +27,15 @@ function ListaEmpresas() {
         setCnpjFiltro(event.target.value);
     }
 
-    const filteredEmpresas = empresas.filter(empresa => {
+    const filteredEmpresas = empresas.length > 0 ? empresas.filter(empresa => {
         return (
             empresa.nomeFantasia.toLowerCase().includes(nomeFiltro.toLowerCase()) &&
             empresa.cnpj.toLowerCase().includes(cnpjFiltro.toLowerCase())
         )
-    });
+    }) : [];
+
+
+
 
     return (
         <div>

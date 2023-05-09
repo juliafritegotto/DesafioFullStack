@@ -10,19 +10,16 @@ function Navbar() {
                     <Link to="/" className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/empresa" className="nav-link">Empresas</Link>
+                    <Link to="/empresas" className="nav-link">Empresas</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/fornecedor" className="nav-link">Fornecedores</Link>
+                    <Link to="/fornecedores" className="nav-link">Fornecedores</Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/cadastro-empresa" className="nav-link">Cadastrar Empresa</Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/cadastro-fornecedor" className="nav-link">Cadastrar Fornecedor</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/cadastro-fornecedorempresa" className="nav-link">Cadastrar Fornecedor</Link>
                 </li>
             </ul>
         </nav>
